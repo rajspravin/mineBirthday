@@ -22,6 +22,13 @@ export type MusicPlaybackContextValue = {
    * start background MP3 over the clips.
    */
   setMusicInteractionGate: (gate: 'videos' | null) => void
+  /** After leaving the photo gallery: resume `background.mp3` if it was started earlier. */
+  resumeBackgroundIfReady: () => void
+  /**
+   * When `/home` is shown again: play intro (if session not started) or resume
+   * main background if it was paused; stops stray slideshow audio.
+   */
+  ensureMusicForHomeView: () => void
 }
 
 export const MusicPlaybackContext =

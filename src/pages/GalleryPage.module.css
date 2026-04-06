@@ -1,0 +1,28 @@
+.pageRoot {
+  position: relative;
+  min-height: 100dvh;
+  min-height: 100svh;
+  width: 100%;
+}
+
+.contentLayer {
+  position: relative;
+  z-index: 1;
+  padding-bottom: env(safe-area-inset-bottom);
+  /* Soft veil so photos & text stay readable over the backdrop */
+  background: linear-gradient(
+    180deg,
+    rgba(14, 11, 18, 0.28) 0%,
+    rgba(14, 11, 18, 0.38) 40%,
+    rgba(14, 11, 18, 0.45) 100%
+  );
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contentLayer {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}

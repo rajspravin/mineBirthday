@@ -90,10 +90,19 @@ export function MusicPlaybackProvider({ children }: { children: ReactNode }) {
   }, [syncPlaying])
 
   const startSlideshowMusic = useCallback(() => {
+    const bg = audioRef.current
+    if (bg && !bg.paused) bg.pause()
     stopIntroInstrumental()
     const el = ensureSlideshowAudio()
     void el.play().catch(() => {})
   }, [ensureSlideshowAudio, stopIntroInstrumental])
+
+  const resumeBackgroundIfReady = useCallback(() => {
+    if (!hasAttemptedStart) return
+    const a = audioRef.current
+    if (!a) return
+    void a.play().catch(() => setIsPlaying(false))
+  }, [hasAttemptedStart])
 
   const ensureAudio = useCallback(() => {
     if (!audioRef.current) {
@@ -107,6 +116,26 @@ export function MusicPlaybackProvider({ children }: { children: ReactNode }) {
     }
     return audioRef.current
   }, [syncPlaying])
+
+  const ensureMusicForHomeView = useCallback(() => {
+    if (slideshowAudioRef.current) {
+      stopSlideshowMusic()
+    }
+    if (hasAttemptedStart) {
+      const a = ensureAudio()
+      if (!a.paused) return
+      void a.play().catch(() => setIsPlaying(false))
+      return
+    }
+    const intro = introAudioRef.current
+    if (intro && !intro.paused) return
+    startIntroInstrumental()
+  }, [
+    hasAttemptedStart,
+    ensureAudio,
+    stopSlideshowMusic,
+    startIntroInstrumental,
+  ])
 
   const beginPlaybackFromUserGesture = useCallback(() => {
     stopIntroInstrumental()
@@ -122,7 +151,7 @@ export function MusicPlaybackProvider({ children }: { children: ReactNode }) {
   const togglePlayback = useCallback(() => {
     if (musicInteractionGateRef.current === 'videos') return
     const slide = slideshowAudioRef.current
-    if (!hasAttemptedStart && slide) {
+    if (slide) {
       if (slide.paused) {
         void slide.play().catch(() => setIsPlaying(false))
       } else {
@@ -173,6 +202,8 @@ export function MusicPlaybackProvider({ children }: { children: ReactNode }) {
       isPlaying,
       hasAttemptedStart,
       setMusicInteractionGate,
+      resumeBackgroundIfReady,
+      ensureMusicForHomeView,
     }),
     [
       startIntroInstrumental,
@@ -184,6 +215,8 @@ export function MusicPlaybackProvider({ children }: { children: ReactNode }) {
       isPlaying,
       hasAttemptedStart,
       setMusicInteractionGate,
+      resumeBackgroundIfReady,
+      ensureMusicForHomeView,
     ],
   )
 

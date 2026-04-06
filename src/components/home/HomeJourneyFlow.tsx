@@ -91,7 +91,16 @@ function journeyMotion(reduced: boolean) {
   }
 }
 
-export function HomeJourneyFlow() {
+type HomeJourneyFlowProps = {
+  /** Show a way back to the home menu (full journey vs free explore). */
+  showMenuEscape?: boolean
+  onRequestMenu?: () => void
+}
+
+export function HomeJourneyFlow({
+  showMenuEscape = false,
+  onRequestMenu,
+}: HomeJourneyFlowProps = {}) {
   const fmReduced = useReducedMotion() ?? false
   const {
     startSlideshowMusic,
@@ -260,6 +269,15 @@ export function HomeJourneyFlow() {
           <button type="button" className={styles.startBtn} onClick={handleStart}>
             Start
           </button>
+          {showMenuEscape && onRequestMenu ? (
+            <button
+              type="button"
+              className={styles.menuEscape}
+              onClick={onRequestMenu}
+            >
+              Or choose photos, videos &amp; more yourself
+            </button>
+          ) : null}
         </motion.div>
       ) : null}
 

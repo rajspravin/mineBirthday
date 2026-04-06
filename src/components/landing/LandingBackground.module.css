@@ -1,0 +1,662 @@
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.layerExiting .orb,
+.layerExiting .balloonCluster,
+.layerExiting .balloonClusterLeft,
+.layerExiting .confetti,
+.layerExiting .photoFloat,
+.layerExiting .heartFloat,
+.layerExiting .circleLeft,
+.layerExiting .circleRight {
+  animation-play-state: paused;
+  opacity: 0.65;
+  transition:
+    opacity 0.45s ease,
+    transform 0.5s ease;
+}
+
+.skyWash {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 85% 70% at 50% 100%,
+      rgba(232, 164, 180, 0.08),
+      transparent 50%
+    ),
+    linear-gradient(
+      195deg,
+      #0e0b12 0%,
+      #120e18 35%,
+      #0c0a10 70%,
+      #08060c 100%
+    );
+}
+
+/* Large translucent circles (template-style) */
+.circleLeft {
+  position: absolute;
+  width: min(120vw, 52rem);
+  height: min(120vw, 52rem);
+  left: -35%;
+  top: 8%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 40% 40%,
+    rgba(140, 90, 120, 0.22),
+    rgba(90, 55, 75, 0.12) 45%,
+    transparent 70%
+  );
+  filter: blur(1px);
+  animation: circleFloat 22s ease-in-out infinite;
+}
+
+.circleRight {
+  position: absolute;
+  width: min(90vw, 36rem);
+  height: min(90vw, 36rem);
+  right: -22%;
+  bottom: -8%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 55% 45%,
+    rgba(180, 120, 140, 0.14),
+    rgba(60, 40, 55, 0.1) 50%,
+    transparent 68%
+  );
+  animation: circleFloat 26s ease-in-out infinite reverse;
+}
+
+.circleSoft {
+  position: absolute;
+  width: 70%;
+  height: 45%;
+  left: 15%;
+  top: 18%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(232, 164, 180, 0.06),
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+@keyframes circleFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(2%, -1.5%) scale(1.02);
+  }
+}
+
+/* 3D-style floating spheres */
+.orbLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 32% 28%,
+    rgba(255, 255, 255, 0.35),
+    rgba(200, 160, 175, 0.22) 28%,
+    rgba(90, 60, 78, 0.35) 55%,
+    rgba(35, 25, 38, 0.55) 100%
+  );
+  box-shadow:
+    inset -6px -8px 16px rgba(0, 0, 0, 0.35),
+    0 10px 28px rgba(0, 0, 0, 0.2);
+  animation: orbBob var(--dur, 14s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.orb[data-i='0'] {
+  width: 18px;
+  height: 18px;
+  left: 12%;
+  top: 22%;
+  --dur: 16s;
+  --delay: -1s;
+}
+.orb[data-i='1'] {
+  width: 12px;
+  height: 12px;
+  left: 78%;
+  top: 18%;
+  --dur: 13s;
+  --delay: -2.5s;
+  opacity: 0.9;
+}
+.orb[data-i='2'] {
+  width: 22px;
+  height: 22px;
+  right: 8%;
+  top: 42%;
+  --dur: 18s;
+  --delay: -0.5s;
+}
+.orb[data-i='3'] {
+  width: 14px;
+  height: 14px;
+  left: 6%;
+  top: 55%;
+  --dur: 15s;
+  --delay: -3s;
+}
+.orb[data-i='4'] {
+  width: 10px;
+  height: 10px;
+  left: 42%;
+  top: 12%;
+  --dur: 12s;
+  --delay: -4s;
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 255, 255, 0.5),
+    rgba(120, 85, 100, 0.25) 40%,
+    rgba(40, 30, 45, 0.5) 100%
+  );
+}
+.orb[data-i='5'] {
+  width: 16px;
+  height: 16px;
+  right: 18%;
+  bottom: 32%;
+  --dur: 17s;
+  --delay: -2s;
+}
+.orb[data-i='6'] {
+  width: 11px;
+  height: 11px;
+  left: 22%;
+  bottom: 38%;
+  --dur: 14s;
+  --delay: -5s;
+}
+.orb[data-i='7'] {
+  width: 20px;
+  height: 20px;
+  right: 28%;
+  top: 28%;
+  --dur: 19s;
+  --delay: -1.5s;
+}
+.orb[data-i='8'] {
+  width: 9px;
+  height: 9px;
+  left: 55%;
+  bottom: 22%;
+  --dur: 11s;
+  --delay: -3.5s;
+}
+
+@keyframes orbBob {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(6px, -14px);
+  }
+}
+
+.balloonCluster {
+  position: absolute;
+  right: 3%;
+  top: 12%;
+  width: 8.5rem;
+  height: 12.5rem;
+  transform: scale(1.12);
+  transform-origin: top right;
+  animation: clusterSway 16s ease-in-out infinite;
+}
+
+.balloon1 {
+  position: absolute;
+  right: 2.5rem;
+  top: 0;
+  filter: drop-shadow(0 10px 22px rgba(234, 176, 191, 0.25));
+}
+
+.balloon2 {
+  position: absolute;
+  right: 0;
+  top: 2.5rem;
+  transform: scale(0.92);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+}
+
+.balloon3 {
+  position: absolute;
+  right: 3.2rem;
+  top: 4.2rem;
+  transform: scale(0.78);
+  opacity: 0.98;
+}
+
+.balloon4 {
+  position: absolute;
+  right: 0.6rem;
+  top: 5.8rem;
+  transform: scale(0.72);
+  opacity: 0.95;
+}
+
+/* Second cluster — bottom-left, mirrors the celebration feel */
+.balloonClusterLeft {
+  position: absolute;
+  left: 1%;
+  bottom: 10%;
+  width: 8rem;
+  height: 11.5rem;
+  transform: scale(1.08);
+  transform-origin: bottom left;
+  animation: clusterSwayLeft 19s ease-in-out infinite;
+}
+
+.bLeft1 {
+  position: absolute;
+  left: 0.25rem;
+  bottom: 4.5rem;
+  transform: scale(1.02);
+  filter: drop-shadow(0 10px 20px rgba(234, 176, 191, 0.22));
+}
+
+.bLeft2 {
+  position: absolute;
+  left: 2.4rem;
+  bottom: 2.8rem;
+  transform: scale(0.88);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.32));
+}
+
+.bLeft3 {
+  position: absolute;
+  left: 0;
+  bottom: 1.2rem;
+  transform: scale(0.76);
+  opacity: 0.96;
+}
+
+.bLeft4 {
+  position: absolute;
+  left: 2.8rem;
+  bottom: 0;
+  transform: scale(0.68);
+  opacity: 0.92;
+}
+
+@keyframes clusterSwayLeft {
+  0%,
+  100% {
+    transform: scale(1.08) translate(0, 0) rotate(1.5deg);
+  }
+  50% {
+    transform: scale(1.08) translate(5px, -6px) rotate(-2deg);
+  }
+}
+
+/* Floating hearts & sparkles — romantic layer */
+.heartsLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heartFloat {
+  position: absolute;
+  font-size: clamp(0.75rem, 3.2vw, 1.15rem);
+  color: rgba(234, 176, 191, 0.42);
+  text-shadow:
+    0 0 18px rgba(234, 176, 191, 0.35),
+    0 0 32px rgba(200, 120, 150, 0.15);
+  animation: heartDrift 18s ease-in-out infinite;
+  line-height: 1;
+}
+
+.heartFloat[data-h='0'] {
+  left: 6%;
+  top: 14%;
+  animation-duration: 20s;
+  animation-delay: -1s;
+  font-size: clamp(0.85rem, 3.5vw, 1.2rem);
+}
+.heartFloat[data-h='1'] {
+  right: 22%;
+  top: 8%;
+  animation-duration: 17s;
+  animation-delay: -4s;
+}
+.heartFloat[data-h='2'] {
+  left: 18%;
+  top: 52%;
+  animation-duration: 22s;
+  animation-delay: -2.5s;
+  opacity: 0.88;
+}
+.heartFloat[data-h='3'] {
+  right: 8%;
+  top: 42%;
+  animation-duration: 16s;
+  animation-delay: -6s;
+  font-size: clamp(0.65rem, 2.8vw, 0.95rem);
+}
+.heartFloat[data-h='4'] {
+  left: 4%;
+  bottom: 26%;
+  animation-duration: 19s;
+  animation-delay: -3s;
+}
+.heartFloat[data-h='5'] {
+  right: 18%;
+  bottom: 38%;
+  animation-duration: 21s;
+  animation-delay: -5.5s;
+  font-size: clamp(0.7rem, 2.9vw, 1rem);
+}
+.heartFloat[data-h='6'] {
+  left: 28%;
+  top: 22%;
+  animation-duration: 18s;
+  animation-delay: -7s;
+}
+.heartFloat[data-h='7'] {
+  right: 4%;
+  bottom: 18%;
+  animation-duration: 23s;
+  animation-delay: -1.5s;
+}
+.heartFloat[data-h='8'] {
+  left: 12%;
+  bottom: 14%;
+  animation-duration: 15s;
+  animation-delay: -8s;
+  font-size: clamp(0.6rem, 2.5vw, 0.85rem);
+  opacity: 0.75;
+}
+.heartFloat[data-h='9'] {
+  right: 32%;
+  top: 28%;
+  animation-duration: 24s;
+  animation-delay: -2s;
+}
+.heartFloat[data-h='10'] {
+  left: 43%;
+  bottom: 8%;
+  animation-duration: 17s;
+  animation-delay: -4.5s;
+  font-size: clamp(0.68rem, 2.8vw, 0.92rem);
+  opacity: 0.55;
+}
+.heartFloat[data-h='11'] {
+  left: 38%;
+  top: 6%;
+  animation-duration: 20s;
+  animation-delay: -6.5s;
+  font-size: clamp(0.62rem, 2.6vw, 0.88rem);
+  opacity: 0.7;
+}
+
+@keyframes heartDrift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate(5px, -10px) rotate(8deg) scale(1.06);
+  }
+  66% {
+    transform: translate(-4px, 6px) rotate(-5deg) scale(0.98);
+  }
+}
+
+@keyframes clusterSway {
+  0%,
+  100% {
+    transform: scale(1.12) translate(0, 0) rotate(-1deg);
+  }
+  50% {
+    transform: scale(1.12) translate(-6px, 8px) rotate(2deg);
+  }
+}
+
+.confettiLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.confetti {
+  position: absolute;
+  width: 5px;
+  height: 14px;
+  border-radius: 1px;
+  opacity: 0.65;
+  animation: confettiDrift 12s linear infinite;
+}
+
+@keyframes confettiDrift {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(24px) rotate(180deg);
+    opacity: 0.45;
+  }
+}
+
+.photoFloat {
+  position: absolute;
+  width: clamp(3.25rem, 15vw, 5.25rem);
+  aspect-ratio: 3 / 4;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  padding: 0.18rem;
+  background: rgba(18, 14, 22, 0.88);
+  opacity: 0.32;
+  box-shadow:
+    0 6px 22px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(234, 176, 191, 0.12);
+  filter: saturate(0.88);
+}
+
+.photoFloat[data-slot='0'] {
+  top: 8%;
+  left: 3%;
+}
+.photoFloat[data-slot='1'] {
+  top: 10%;
+  right: 5%;
+  width: clamp(3rem, 14vw, 4.85rem);
+}
+.photoFloat[data-slot='2'] {
+  top: 24%;
+  left: 2%;
+  width: clamp(2.85rem, 13vw, 4.5rem);
+}
+.photoFloat[data-slot='3'] {
+  top: 28%;
+  right: 4%;
+}
+.photoFloat[data-slot='4'] {
+  top: 46%;
+  left: 1%;
+  width: clamp(2.75rem, 12vw, 4.2rem);
+}
+.photoFloat[data-slot='5'] {
+  top: 50%;
+  right: 2%;
+  width: clamp(2.9rem, 13vw, 4.4rem);
+}
+.photoFloat[data-slot='6'] {
+  bottom: 30%;
+  left: 4%;
+}
+.photoFloat[data-slot='7'] {
+  bottom: 28%;
+  right: 5%;
+  width: clamp(2.8rem, 12vw, 4.15rem);
+}
+.photoFloat[data-slot='8'] {
+  bottom: 14%;
+  left: 7%;
+  width: clamp(2.65rem, 12vw, 4rem);
+}
+.photoFloat[data-slot='9'] {
+  bottom: 12%;
+  right: 8%;
+}
+.photoFloat[data-slot='10'] {
+  top: 12%;
+  left: 16%;
+  width: clamp(2.5rem, 11vw, 3.85rem);
+}
+.photoFloat[data-slot='11'] {
+  top: 38%;
+  right: 14%;
+  width: clamp(2.55rem, 11vw, 3.9rem);
+}
+
+.photoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.32rem;
+  transform: rotate(var(--rot, 0deg));
+}
+
+/* When the media catalog is empty, show soft “memory frame” tiles so layout still reads */
+.photoPlaceholder {
+  opacity: 0.42;
+  border: 1px solid rgba(234, 176, 191, 0.22);
+}
+
+.photoPlaceholderInner {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border-radius: 0.32rem;
+  background:
+    linear-gradient(
+      128deg,
+      rgba(234, 176, 191, 0.22) 0%,
+      rgba(120, 70, 90, 0.35) 42%,
+      rgba(60, 35, 48, 0.5) 100%
+    ),
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(255, 255, 255, 0.12),
+      transparent 55%
+    );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.drift0 {
+  animation: driftA 24s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -1.5s);
+}
+.drift1 {
+  animation: driftB 28s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -1.8s);
+}
+.drift2 {
+  animation: driftC 26s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -1.2s);
+}
+
+@keyframes driftA {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translate(4px, -8px) rotate(calc(var(--rot, 0deg) + 2deg));
+  }
+}
+@keyframes driftB {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translate(-5px, -10px) rotate(calc(var(--rot, 0deg) - 2deg));
+  }
+}
+@keyframes driftC {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6px, 5px) scale(1.02);
+  }
+}
+
+.static .orb,
+.static .balloonCluster,
+.static .balloonClusterLeft,
+.static .confetti,
+.static .heartFloat,
+.static .circleLeft,
+.static .circleRight {
+  animation: none;
+}
+
+@media (max-width: 420px) {
+  .balloonCluster {
+    opacity: 0.9;
+    right: 1%;
+    transform-origin: top right;
+  }
+
+  .balloonClusterLeft {
+    opacity: 0.88;
+    left: 0;
+    transform-origin: bottom left;
+  }
+
+  .heartFloat[data-h='10'],
+  .heartFloat[data-h='11'] {
+    display: none;
+  }
+
+  .photoFloat[data-slot='4'],
+  .photoFloat[data-slot='5'] {
+    opacity: 0.26;
+  }
+
+  .photoFloat[data-slot='10'],
+  .photoFloat[data-slot='11'] {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb,
+  .balloonCluster,
+  .balloonClusterLeft,
+  .confetti,
+  .heartFloat,
+  .circleLeft,
+  .circleRight,
+  .drift0,
+  .drift1,
+  .drift2 {
+    animation: none !important;
+  }
+}

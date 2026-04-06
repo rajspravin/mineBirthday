@@ -1,3 +1,281 @@
+.pageShell {
+  position: relative;
+  width: 100%;
+  min-height: min(100dvh, 100svh);
+  overflow: hidden;
+}
+
+.bgMesh {
+  position: absolute;
+  inset: -30%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 55% 42% at 50% -5%,
+      rgba(234, 176, 191, 0.2),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 40% 35% at 100% 85%,
+      rgba(160, 100, 130, 0.12),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse 38% 32% at 0% 70%,
+      rgba(234, 176, 191, 0.09),
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(255, 182, 200, 0.05),
+      transparent 45%
+    );
+  animation: meshDrift 22s ease-in-out infinite alternate;
+}
+
+@keyframes meshDrift {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.92;
+  }
+  100% {
+    transform: scale(1.05) translate(2%, 1%);
+    opacity: 1;
+  }
+}
+
+.bgOrbs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle 280px at 15% 25%,
+      rgba(234, 176, 191, 0.09),
+      transparent 70%
+    ),
+    radial-gradient(
+      circle 220px at 88% 55%,
+      rgba(200, 140, 165, 0.07),
+      transparent 68%
+    );
+}
+
+.bgHearts {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heartFloat {
+  position: absolute;
+  font-size: clamp(0.85rem, 3vw, 1.1rem);
+  color: rgba(234, 176, 191, 0.22);
+  text-shadow: 0 0 24px rgba(234, 176, 191, 0.25);
+  animation: heartDrift 18s ease-in-out infinite;
+}
+
+.heartFloat:nth-child(1) {
+  left: 8%;
+  top: 18%;
+  animation-duration: 20s;
+  animation-delay: -2s;
+}
+
+.heartFloat:nth-child(2) {
+  right: 10%;
+  top: 32%;
+  animation-duration: 16s;
+  animation-delay: -5s;
+  font-size: clamp(0.7rem, 2.5vw, 0.95rem);
+}
+
+.heartFloat:nth-child(3) {
+  left: 18%;
+  bottom: 22%;
+  animation-duration: 22s;
+  animation-delay: -8s;
+}
+
+.heartFloat:nth-child(4) {
+  right: 14%;
+  bottom: 28%;
+  animation-duration: 19s;
+  animation-delay: -3s;
+}
+
+@keyframes heartDrift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.2;
+  }
+  33% {
+    transform: translate(6px, -10px) rotate(6deg);
+    opacity: 0.35;
+  }
+  66% {
+    transform: translate(-4px, 8px) rotate(-4deg);
+    opacity: 0.25;
+  }
+}
+
+/* Soft polaroids in margins — behind main column, does not intercept taps */
+.bgPhotos {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.photoFloat {
+  position: absolute;
+  width: clamp(3.25rem, 14vw, 5.25rem);
+  aspect-ratio: 3 / 4;
+  border-radius: 0.45rem;
+  padding: 0.2rem;
+  background: rgba(22, 18, 28, 0.75);
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(234, 176, 191, 0.12);
+  opacity: 0.32;
+  animation: photoDrift 22s ease-in-out infinite;
+}
+
+.photoFloat[data-slot='0'] {
+  --rot: -8deg;
+  left: 3%;
+  top: 10%;
+  animation-duration: 24s;
+  animation-delay: -2s;
+}
+
+.photoFloat[data-slot='1'] {
+  --rot: 7deg;
+  right: 4%;
+  top: 14%;
+  width: clamp(2.85rem, 12vw, 4.5rem);
+  animation-duration: 20s;
+  animation-delay: -5s;
+}
+
+.photoFloat[data-slot='2'] {
+  --rot: 5deg;
+  left: 2%;
+  top: 42%;
+  animation-duration: 26s;
+  animation-delay: -8s;
+}
+
+.photoFloat[data-slot='3'] {
+  --rot: -6deg;
+  right: 3%;
+  top: 46%;
+  width: clamp(3rem, 13vw, 4.85rem);
+  animation-duration: 23s;
+  animation-delay: -3s;
+}
+
+.photoFloat[data-slot='4'] {
+  --rot: 6deg;
+  left: 5%;
+  bottom: 12%;
+  animation-duration: 21s;
+  animation-delay: -6s;
+}
+
+.photoFloat[data-slot='5'] {
+  --rot: -7deg;
+  right: 5%;
+  bottom: 16%;
+  width: clamp(2.75rem, 11vw, 4.25rem);
+  animation-duration: 25s;
+  animation-delay: -1s;
+}
+
+.photoFloat[data-slot='6'] {
+  --rot: -5deg;
+  left: 1%;
+  top: 28%;
+  width: clamp(2.65rem, 11vw, 4rem);
+  animation-duration: 23s;
+  animation-delay: -4s;
+}
+
+.photoFloat[data-slot='7'] {
+  --rot: 4deg;
+  right: 2%;
+  top: 30%;
+  width: clamp(2.9rem, 12vw, 4.35rem);
+  animation-duration: 27s;
+  animation-delay: -7s;
+}
+
+.photoFloat[data-slot='8'] {
+  --rot: -6deg;
+  left: 7%;
+  top: 64%;
+  width: clamp(2.55rem, 10vw, 3.85rem);
+  animation-duration: 20s;
+  animation-delay: -2.5s;
+}
+
+.photoFloat[data-slot='9'] {
+  --rot: 7deg;
+  right: 6%;
+  top: 61%;
+  width: clamp(2.8rem, 11vw, 4.1rem);
+  animation-duration: 24s;
+  animation-delay: -5.5s;
+}
+
+.photoFloat[data-slot='10'] {
+  --rot: -4deg;
+  left: 14%;
+  top: 6%;
+  width: clamp(2.5rem, 10vw, 3.75rem);
+  animation-duration: 26s;
+  animation-delay: -9s;
+}
+
+.photoFloat[data-slot='11'] {
+  --rot: 5deg;
+  right: 11%;
+  top: 5%;
+  width: clamp(2.6rem, 10vw, 3.9rem);
+  animation-duration: 22s;
+  animation-delay: -1.5s;
+}
+
+.photoImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.28rem;
+  filter: saturate(0.92);
+}
+
+@keyframes photoDrift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translate(4px, -10px) rotate(calc(var(--rot, 0deg) + 2deg));
+  }
+}
+
+.pageInner {
+  position: relative;
+  z-index: 1;
+}
+
 .stack {
   display: flex;
   flex-direction: column;
@@ -22,12 +300,14 @@
   line-height: 1.12;
   margin: 0;
   color: var(--color-text);
-  text-shadow: 0 0 48px rgba(234, 176, 191, 0.12);
+  text-shadow:
+    0 0 48px rgba(234, 176, 191, 0.14),
+    0 2px 24px rgba(0, 0, 0, 0.2);
 }
 
 .sub {
   color: var(--color-text-muted);
-  max-width: 21rem;
+  max-width: 24rem;
   font-size: 0.97rem;
   line-height: 1.68;
   margin: 0;
@@ -96,5 +376,35 @@
     padding: 0.5rem 0.8rem;
     font-size: 0.6875rem;
     letter-spacing: 0.1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .photoFloat[data-slot='2'],
+  .photoFloat[data-slot='3'],
+  .photoFloat[data-slot='8'],
+  .photoFloat[data-slot='9'] {
+    opacity: 0.22;
+  }
+}
+
+@media (max-width: 380px) {
+  .photoFloat[data-slot='4'],
+  .photoFloat[data-slot='5'],
+  .photoFloat[data-slot='8'],
+  .photoFloat[data-slot='9'] {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bgMesh,
+  .heartFloat,
+  .photoFloat {
+    animation: none;
+  }
+
+  .photoFloat {
+    transform: rotate(var(--rot, 0deg));
   }
 }

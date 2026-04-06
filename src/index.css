@@ -15,6 +15,7 @@
 
   --font-sans: 'Nunito Sans', system-ui, sans-serif;
   --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-hero: 'Nunito Sans', system-ui, sans-serif;
   --font-tamil: 'Noto Sans Tamil', 'Nunito Sans', system-ui, sans-serif;
 
   --text-base: clamp(0.9375rem, 2.9vw, 1.0625rem);
