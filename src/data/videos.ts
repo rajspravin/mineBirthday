@@ -1,20 +1,6 @@
-export type VideoClip = {
-  /** Served from `public/assets/videos/` → `/assets/videos/...` */
-  src: string
-  title: string
-  description?: string
-  /** Optional poster in `public/` (e.g. `/assets/images/video-poster.jpg`) */
-  poster?: string
-}
-
 /**
- * Add clips after placing files in `public/assets/videos/`.
- * Keep entries explicit so nothing heavy is bundled by Vite.
+ * Videos under `public/assets/videos/` — auto-listed like images.
+ * Add `.mp4` / `.webm` / `.mov` files; they play in order after the photo reel.
  */
-export const VIDEO_CLIPS: VideoClip[] = [
-  // {
-  //   src: '/assets/videos/moment-01.mp4',
-  //   title: 'A little moment',
-  //   poster: '/assets/images/moment-01-poster.jpg',
-  // },
-]
+export type { CatalogVideo as VideoClip } from './mediaCatalogTypes'
+export { CATALOG_VIDEOS as VIDEO_CLIPS } from 'virtual:media-catalog'

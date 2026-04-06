@@ -12,7 +12,7 @@ const INTRO_MS = 820
 
 export default function LandingPage() {
   const navigate = useNavigate()
-  const { beginPlaybackFromUserGesture } = useMusicPlayback()
+  const { startIntroInstrumental } = useMusicPlayback()
   const reducedMotion = usePrefersReducedMotion()
   const fmReduced = useReducedMotion() ?? false
   const [delayedIntro, setDelayedIntro] = useState(false)
@@ -24,6 +24,10 @@ export default function LandingPage() {
     const id = window.setTimeout(() => setDelayedIntro(true), INTRO_MS)
     return () => window.clearTimeout(id)
   }, [reducedMotion])
+
+  useEffect(() => {
+    startIntroInstrumental()
+  }, [startIntroInstrumental])
 
   const introDone = reducedMotion || delayedIntro
 
@@ -62,7 +66,6 @@ export default function LandingPage() {
             type="button"
             className={styles.button}
             onClick={() => {
-              beginPlaybackFromUserGesture()
               navigate('/home')
             }}
           >

@@ -1,5 +1,8 @@
 import type { ReactNode } from 'react'
-import { LOVE_LETTER } from '../../data/loveLetter'
+import {
+  LOVE_LETTER,
+  type LoveLetterDefinition,
+} from '../../data/loveLetter'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { useRevealOnScroll } from '../../hooks/useRevealOnScroll'
 import styles from './LoveLetterSection.module.css'
@@ -25,16 +28,23 @@ function Reveal({ children, className, disabled = false }: RevealProps) {
 }
 
 type LoveLetterSectionProps = {
-  content?: typeof LOVE_LETTER
+  content?: LoveLetterDefinition
+  /** Use Noto Sans Tamil (and body fallback) for Tamil copy. */
+  tamilTypography?: boolean
 }
 
-export function LoveLetterSection({ content = LOVE_LETTER }: LoveLetterSectionProps) {
+export function LoveLetterSection({
+  content = LOVE_LETTER,
+  tamilTypography = false,
+}: LoveLetterSectionProps) {
   const reduced = usePrefersReducedMotion()
 
   return (
     <section className={styles.section} aria-label="Love letter">
       <div className={styles.card}>
-        <div className={styles.inner}>
+        <div
+          className={`${styles.inner} ${tamilTypography ? styles.tamilText : ''}`}
+        >
           <Reveal disabled={reduced}>
             <p className={styles.floral} aria-hidden>
               ✦

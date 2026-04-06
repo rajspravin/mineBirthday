@@ -61,6 +61,14 @@
   z-index: 1;
 }
 
+.tamilText .eyebrow,
+.tamilText .title,
+.tamilText .body,
+.tamilText .closing,
+.tamilText .signature {
+  font-family: var(--font-tamil), var(--font-sans);
+}
+
 .floral {
   font-size: 1.5rem;
   line-height: 1;

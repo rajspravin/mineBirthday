@@ -1,19 +1,7 @@
-export type GalleryImage = {
-  /** Path under site root, e.g. `/assets/images/photo.jpg` (file in `public/assets/images/`) */
-  src: string
-  alt: string
-}
-
 /**
- * List your photos here after adding files to `public/assets/images/`.
- * Keep the list explicit so Vite can ship without bundling large binaries.
+ * All images under `public/assets/images/` are picked up at dev/build time
+ * (see `plugins/mediaCatalogPlugin.ts`). Sorted by date in the filename when
+ * possible (e.g. `IMG_20221017_150717.jpg` → 2022-10-17).
  */
-export const GALLERY_IMAGES: GalleryImage[] = [
-  { src: '/assets/images/1.jpg', alt: 'A moment together' },  
-  { src: '/assets/images/2.jpg', alt: 'A moment together' },
-  { src: '/assets/images/3.jpg', alt: 'A moment together' },
-  { src: '/assets/images/4.jpg', alt: 'A moment together' },
-  { src: '/assets/images/5.jpg', alt: 'A moment together' },
-  { src: '/assets/images/6.jpg', alt: 'A moment together' },
-
-]
+export type { CatalogImage as GalleryImage } from './mediaCatalogTypes'
+export { CATALOG_IMAGES as GALLERY_IMAGES } from 'virtual:media-catalog'

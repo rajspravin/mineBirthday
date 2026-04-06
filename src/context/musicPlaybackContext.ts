@@ -1,12 +1,27 @@
 import { createContext } from 'react'
 
 export type MusicPlaybackContextValue = {
+  /** Plays the intro instrumental (landing → home until a section is opened). */
+  startIntroInstrumental: () => void
+  /** Stops intro only (e.g. starting the guided flow without slideshow music). */
+  stopIntroInstrumental: () => void
+  /**
+   * Stops intro and plays slideshow music (photo reel). Call from a user gesture.
+   * Stopped automatically when `stopSlideshowMusic` runs or main playback begins.
+   */
+  startSlideshowMusic: () => void
+  stopSlideshowMusic: () => void
   /** Call from a click/tap handler so `play()` satisfies browser autoplay rules. */
   beginPlaybackFromUserGesture: () => void
   togglePlayback: () => void
   isPlaying: boolean
-  /** True after Tap to Start (or any explicit start attempt). */
+  /** True after main background music has been started (e.g. first home section). */
   hasAttemptedStart: boolean
+  /**
+   * During guided video playback, suppress the header music toggle so it does not
+   * start background MP3 over the clips.
+   */
+  setMusicInteractionGate: (gate: 'videos' | null) => void
 }
 
 export const MusicPlaybackContext =

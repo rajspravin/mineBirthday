@@ -1,7 +1,15 @@
+export type LoveLetterDefinition = {
+  eyebrow: string
+  title: string
+  paragraphs: readonly string[]
+  closing: string
+  signature: string
+}
+
 /**
  * Edit this copy to make the letter yours. Paragraphs reveal one by one as she scrolls.
  */
-export const LOVE_LETTER = {
+export const LOVE_LETTER: LoveLetterDefinition = {
   eyebrow: 'A note for you',
   title: 'My love',
   paragraphs: [
@@ -11,4 +19,4 @@ export const LOVE_LETTER = {
   ],
   closing: 'Forever yours,',
   signature: '— Me',
-} as const
+}

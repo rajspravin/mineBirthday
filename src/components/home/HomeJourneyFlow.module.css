@@ -1,0 +1,288 @@
+.root {
+  position: relative;
+  width: 100%;
+  min-height: min(100dvh, 100svh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-page-y) var(--space-page-x);
+  overflow-x: hidden;
+}
+
+.ambient {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% -10%, rgba(234, 176, 191, 0.16), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 80%, rgba(216, 150, 168, 0.08), transparent),
+    radial-gradient(ellipse 50% 35% at 0% 90%, rgba(234, 176, 191, 0.06), transparent);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: min(36rem, 100%);
+}
+
+.tamil {
+  font-family: var(--font-tamil);
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+}
+
+.welcomeQuote {
+  composes: tamil;
+  font-size: clamp(1.05rem, 4.2vw, 1.35rem);
+  color: var(--color-text);
+  text-wrap: balance;
+  margin: 0 0 var(--space-block-md);
+  white-space: pre-line;
+}
+
+.welcomeSub {
+  composes: tamil;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.72;
+  max-width: 28rem;
+  margin: 0 auto var(--space-block-lg);
+}
+
+.startBtn {
+  font-family: var(--font-sans);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 1.85rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-bg);
+  background: linear-gradient(135deg, var(--color-pink) 0%, var(--color-pink-deep) 100%);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset,
+    0 12px 40px rgba(234, 176, 191, 0.22);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+.startBtn:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.18) inset,
+    0 16px 48px rgba(234, 176, 191, 0.3);
+}
+
+.startBtn:active {
+  transform: scale(0.98);
+}
+
+.progress {
+  margin-top: var(--space-block-md);
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* —— Full-bleed media stages —— */
+.mediaStage {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.mediaFrame {
+  position: relative;
+  width: 100%;
+  max-width: 42rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.25rem 0.5rem;
+  min-height: 0;
+}
+
+.slideImg {
+  max-width: 100%;
+  max-height: min(72dvh, 72svh);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.45),
+    0 0 0 1px var(--color-border-warm);
+}
+
+.caption {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  max-width: 20rem;
+}
+
+.videoShell {
+  width: 100%;
+  max-width: 40rem;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.5),
+    0 0 0 1px var(--color-border-warm);
+  background: #000;
+}
+
+.videoEl {
+  display: block;
+  width: 100%;
+  max-height: min(70dvh, 70svh);
+  vertical-align: middle;
+}
+
+.videoTitle {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-text);
+}
+
+.videoMeta {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  max-width: 24rem;
+  padding: 0 1rem;
+}
+
+/* —— Journey year card —— */
+.journeyCard {
+  width: 100%;
+  max-width: 22.5rem;
+  margin: 0 auto;
+  padding: 1.35rem 1.25rem 1.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(
+    165deg,
+    rgba(21, 17, 25, 0.94) 0%,
+    rgba(15, 12, 18, 0.98) 100%
+  );
+  border: 1px solid var(--color-border-warm);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.journeyDate {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-pink);
+  margin: 0 0 0.5rem;
+}
+
+.journeyTitle {
+  composes: tamil;
+  font-size: 1.2rem;
+  margin: 0 0 0.85rem;
+  color: var(--color-text);
+}
+
+.journeyImg {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0.65rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+.journeyQuote {
+  composes: tamil;
+  font-size: 0.98rem;
+  color: rgba(255, 249, 250, 0.88);
+  margin: 0;
+  text-align: center;
+}
+
+/* —— Letter wrap —— */
+.letterWrap {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.nextBtn {
+  composes: startBtn;
+  margin: var(--space-block-lg) auto 0;
+  letter-spacing: 0.14em;
+}
+
+/* —— Finale —— */
+.finale {
+  text-align: center;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.finaleFloral {
+  font-size: 1.25rem;
+  color: var(--color-pink);
+  margin-bottom: var(--space-block-sm);
+  opacity: 0.85;
+}
+
+.finaleTitle {
+  composes: tamil;
+  font-size: clamp(1.22rem, 4.6vw, 1.62rem);
+  font-weight: 600;
+  margin: 0 0 var(--space-block-md);
+  color: var(--color-text);
+}
+
+.finaleBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.finaleP {
+  composes: tamil;
+  font-size: 0.98rem;
+  line-height: 1.82;
+  color: rgba(255, 249, 250, 0.88);
+  margin: 0;
+  text-align: center;
+}
+
+.finaleSign {
+  margin-top: var(--space-block-lg);
+  composes: tamil;
+  font-size: 1.02rem;
+  color: var(--color-pink);
+}
+
+@media (max-width: 380px) {
+  .journeyCard {
+    padding: 1.1rem 1rem 1.25rem;
+  }
+}
