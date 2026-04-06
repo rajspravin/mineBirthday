@@ -1,0 +1,40 @@
+.shell {
+  min-height: 100dvh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(
+      ellipse 125% 85% at 50% -32%,
+      var(--color-pink-glow),
+      transparent 54%
+    ),
+    radial-gradient(
+      ellipse 70% 45% at 100% 100%,
+      rgba(232, 164, 180, 0.1),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 0% 88%,
+      rgba(120, 80, 110, 0.06),
+      transparent 48%
+    );
+  color: var(--color-text);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+}
+
+.pageWrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+}

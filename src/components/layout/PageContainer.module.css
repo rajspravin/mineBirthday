@@ -1,0 +1,8 @@
+.root {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-page-x);
+  padding-block: var(--space-page-y);
+  padding-bottom: max(var(--space-page-y), env(safe-area-inset-bottom));
+}

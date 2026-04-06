@@ -1,0 +1,245 @@
+.root {
+  position: relative;
+  width: 100%;
+  min-height: min(88dvh, 88svh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(1.5rem, 6vw, 2.5rem) 0 clamp(2rem, 8vw, 3rem);
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  inset: -40% -30% auto;
+  height: 75%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 55% 60% at 50% 0%,
+    rgba(232, 164, 180, 0.32),
+    transparent 68%
+  );
+  opacity: 0.95;
+}
+
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(
+      circle at 12% 22%,
+      rgba(255, 255, 255, 0.06) 0,
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 88% 30%,
+      rgba(232, 164, 180, 0.08) 0,
+      transparent 38%
+    );
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 26rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.15rem, 4vw, 1.75rem);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(232, 164, 180, 0.85);
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.eyebrowIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.headlineRow {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.35rem, 11vw, 3.45rem);
+  line-height: 1.08;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  text-wrap: balance;
+  text-shadow:
+    0 0 42px rgba(232, 164, 180, 0.22),
+    0 18px 48px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(22px) scale(0.97);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
+    transform 1.05s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+}
+
+.headlineRowIn {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.accent {
+  display: inline-block;
+  margin-left: 0.12em;
+  vertical-align: middle;
+  animation: heartPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 14px rgba(232, 164, 180, 0.35));
+  }
+  50% {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 26px rgba(232, 164, 180, 0.55));
+  }
+}
+
+.subline {
+  margin: 0;
+  max-width: 22rem;
+  font-size: clamp(0.95rem, 3.6vw, 1.05rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+  text-wrap: pretty;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.22s,
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.22s;
+}
+
+.sublineIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mediaWrap {
+  width: 100%;
+  margin-top: 0.25rem;
+  opacity: 0;
+  transform: translateY(18px) scale(0.98);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1) 0.38s,
+    transform 1.05s cubic-bezier(0.22, 1, 0.36, 1) 0.38s;
+}
+
+.mediaWrapIn {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.mediaFrame {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(232, 164, 180, 0.22);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.3),
+    0 28px 64px rgba(0, 0, 0, 0.38);
+  background: rgba(10, 8, 12, 0.6);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.videoShell {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 0, 0, 0.15),
+    rgba(6, 4, 8, 0.55)
+  );
+  transition: opacity 0.25s ease;
+}
+
+.videoOverlayHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.playCircle {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(232, 164, 180, 0.22);
+  border: 1px solid var(--color-pink-soft);
+  color: var(--color-text);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.playCircle svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-left: 3px;
+}
+
+.mediaCaption {
+  margin: 0.55rem 0 0;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow,
+  .headlineRow,
+  .subline,
+  .mediaWrap {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .accent {
+    animation: none;
+    filter: drop-shadow(0 0 12px rgba(232, 164, 180, 0.35));
+  }
+}

@@ -1,0 +1,30 @@
+.wrap {
+  display: inline-block;
+  margin-bottom: 1.4rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.15rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: 8px;
+  transition:
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.link:hover {
+  color: var(--color-pink);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--color-pink);
+  outline-offset: 4px;
+}
